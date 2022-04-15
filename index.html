@@ -4,101 +4,305 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Admin Dashboard</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
         :root {
-            --blueNavbar: #3772FF;
-            --yellowAccent: #FDCA40;
-            --fontColor: #080708;
-            --greyBackground: #E6E8E6;
-            --redAccent: #DF2935;
+            --redColour: #ff2222;
+            --lightRedColour: #ffecec;
+            --yellowColour: #ffc822;
+            --lightYellowColour: #fffaec;
+            --blueColour: #006eff;
+            --lightBlueColour: #eaf3fe;
+            --greenColour: #59A96A;
+            --lightGreenColour: #e3f9e8;
+            --greyColour: #e2e7f1;
+            --whiteColour: #F4F4F8; 
+            --blackColour: #0C0C0C;
+            --darkGreyColour: #36494E;
         }
-        
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-
         a {
             text-decoration: none;
-            color: white;
-            text-transform: capitalize;
         }
-
-        .container {
-            display: flex;
-        }
-
-        .navbar {
-            background-color: var(--blueNavbar);
-            width: 20vw;
+        .grid-container {
+            display: grid;
             height: 100vh;
+            grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+        }
+        .grid-items {
+            border: 1px solid black;
+        }
+        .grid-navbar {
+            background-color: var(--blueColour);
+            text-transform: capitalize;
+            grid-area: 1/1/5/2;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            font-size: 1.2rem;
+            gap: 50px;
+        }
+        .grid-navbar a {
+            color: white;
+        }
+        .dashboard {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .main-links, .secondary-links {
+            font-size: 1.3rem;
+        }
+        .main-links p, .secondary-links p {
+            padding-top: 10px;
+        }
+        .main-links-links > li{
             gap: 50px;
         }
 
-        .middle-section, .bottom-section {
+
+        .grid-header {
+            grid-area: 1/2/2/5;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            text-transform: capitalize;
+            padding: 20px 40px;
+            color: var(--blackColour);
+        }
+        .grid-header-first-row {
             display: flex;
-            flex-direction: column;
-            gap: 1vh;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
         }
-
-        .first-section > a {
-            font-size: 1.5rem;
+        .profile-container-icon {
+            height: 60px;
+            border-radius: 10000px;
+        }
+        .profile-welcome-icon {
+            height: 70px;
+            border-radius: 10000px;
+        }
+        .search-container, .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 1.2rem;
             font-weight: 500;
         }
-
-        .middle-section, .bottom-section > a {
+        .search-container a {
+            color: var(--blackColour);
+        }
+        .search-field {
+            width: 30vw;
+            border: none;
+            font-size: 1.1rem;
+            background-color: var(--greyColour);
+            padding: 5px 10px;
+            border-radius: 10000px;
+            color: var(--darkGreyColour);
+        }
+        .grid-header-second-row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .welcome-container, .buttons-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 1.2rem;
             font-weight: 500;
         }
-
-        .dashboard-icon {
-            font-size: 3rem;
-            align-items: baseline;
+        .new-button, .upload-button, .share-button {
+            border: none;
+            font-size: 1.2rem;
+            width: 8vw;
+            padding: 10px 15px;
+            border-radius: 10000px;
+            text-transform: capitalize;
         }
+        .new-button {
+            background-color: var(--lightBlueColour);
+            color: var(--blueColour);
+            font-weight: 500;
+            border: 2px solid var(--blueColour);
+            transition: 0.2s all ease-in-out;
+        }
+        .new-button:hover {
+            background-color: var(--blueColour);
+            color: var(--lightBlueColour);
+            border: 2px solid var(--blueColour);
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+        }
+        .upload-button {
+            background-color: var(--lightYellowColour);
+            color: var(--yellowColour);
+            font-weight: 500;
+            border: 2px solid var(--yellowColour);
+            transition: 0.2s all ease-in-out;
+        }
+        .upload-button:hover {
+            background-color: var(--yellowColour);
+            color: var(--lightYellowColour);
+            border: 2px solid var(--yellowColour);
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+        }
+        .share-button {
+            background-color: var(--lightRedColour);
+            color: var(--redColour);
+            font-weight: 500;
+            border: 2px solid var(--redColour);
+            transition: 0.2s all ease-in-out;
+        }
+        .share-button:hover {
+            background-color: var(--redColour);
+            color: var(--lightRedColour);
+            border: 2px solid var(--redColour);
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+        }
+
+
+        .grid-content {
+            grid-area: 2/2/5/4;
+            display: grid;
+            grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+            padding: 20px;
+            gap: 20px;
+        }
+        .grid-content-project {
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+            box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.16);
+        }
+        .grid-content-project:hover {
+            transform: scale(1.05);
+            transition: 0.2s all ease-in-out;
+        }
+        .grid-content-project-text {
+            color: var(--darkGreyColour);
+        }
+        .grid-project-header {
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            color: var(--blackColour);
+            margin-bottom: 10px;
+        }
+        .project-1 {
+            border: 2px solid var(--blueColour);
+            background-color: var(--lightBlueColour);
+        }
+        .project-2 {
+            border: 2px solid var(--yellowColour);
+            background-color: var(--lightYellowColour);
+        }
+        .project-3 {
+            border: 2px solid var(--redColour);
+            background-color: var(--lightRedColour);
+        }
+        .project-4 {
+            border: 2px solid var(--greenColour);
+            background-color: var(--lightGreenColour);
+        }
+
+
+
+        .grid-sidebar {
+            grid-area: 2/4/5/5;
+        }
+        .grid-content, .grid-sidebar {
+            background-color: var(--greyColour);
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <div class="first-section">
-                <a href="#">dashboard</a>
+    <div class="grid-container">
+        <div class="grid-navbar grid-items">
+            <div class="dashboard">
+                <p><a href="#">dashboard</a></p>
             </div>
-
-            <div class="middle-section">
-                <a href="#">home</a>
-                <a href="#">profile</a>
-                <a href="#">messages</a>
-                <a href="#">history</a>
-                <a href="#">tasks</a>
-                <a href="#">communities</a>
+            <div class="main-links">
+                <p><a href="#">home</a></p>
+                <p><a href="#">profile</a></p>
+                <p><a href="#">messages</a></p>
+                <p><a href="#">tasks</a></p>
+                <p><a href="#">history</a></p>
+                <p><a href="#">communities</a></p>
             </div>
-
-            <div class="bottom-section">
-                <a href="#">settings</a>
-                <a href="#">support</a>
-                <a href="#">privacy</a>
+            <div class="secondary-links">
+                <p><a href="#">settings</a></p>
+                <p><a href="#">support</a></p>
+                <p><a href="#">privacy</a></p>
             </div>
         </div>
-
-        <div class="second-section">
-            <div class="second-navbar">
-                <div class="first-row">
-                    <div class="search-bar">
-                        <p>search</p>
-                        <input type="text" name="search-field" id="search-field">
-                    </div>
+        <div class="grid-header grid-items">
+            <div class="grid-header-first-row">
+                <div class="search-container">
+                    <p><a href="#">search</a></p>
+                    <input class="search-field" type="text">
+                </div>
+                <div class="profile-container">
+                    notifications
+                    <img class="profile-container-icon" src="images/profile-icon.jpg" alt="">
+                    <p>morgan oakley</p>
                 </div>
             </div>
+            <div class="grid-header-second-row">
+                <div class="welcome-container">
+                    <img class="profile-welcome-icon" src="images/profile-icon.jpg" alt="">
+                    <div class="welcome-container-text">
+                        <p>hi there,</p>
+                        <p>morgan oakley (@morgan)</p>
+                    </div>
+                </div>
+                <div class="buttons-container">
+                    <button class="new-button">new</button>
+                    <button class="upload-button">upload</button>
+                    <button class="share-button">share</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-content grid-items">
+            <div class="grid-content-project project-1">
+                <div class="grid-content-project-text">
+                    <p class="grid-project-header">super cool project</p>
+                    <div class="color-line"></div>
+                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                </div>
+            </div>
+            <div class="grid-content-project project-2">
+                <div class="grid-content-project-text">
+                    <p class="grid-project-header">pretty cool project</p>
+                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                </div>
+            </div>
+            <div class="grid-content-project project-3">
+                <div class="grid-content-project-text">
+                    <p class="grid-project-header">damn cool project</p>
+                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                </div>
+            </div>
+            <div class="grid-content-project project-4">
+                <div class="grid-content-project-text">
+                    <p class="grid-project-header">freaking cool project</p>
+                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-sidebar grid-items">
+
         </div>
     </div>
 </body>
