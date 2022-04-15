@@ -4,228 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
-        :root {
-            --redColour: #ff2222;
-            --lightRedColour: #ffecec;
-            --yellowColour: #ffc822;
-            --lightYellowColour: #fffaec;
-            --blueColour: #006eff;
-            --lightBlueColour: #eaf3fe;
-            --greenColour: #59A96A;
-            --lightGreenColour: #e3f9e8;
-            --greyColour: #e2e7f1;
-            --whiteColour: #F4F4F8; 
-            --blackColour: #0C0C0C;
-            --darkGreyColour: #36494E;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        a {
-            text-decoration: none;
-        }
-        .grid-container {
-            display: grid;
-            height: 100vh;
-            grid-template: repeat(4, 1fr) / repeat(4, 1fr);
-        }
-        .grid-items {
-            border: 1px solid black;
-        }
-        .grid-navbar {
-            background-color: var(--blueColour);
-            text-transform: capitalize;
-            grid-area: 1/1/5/2;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-        .grid-navbar a {
-            color: white;
-        }
-        .dashboard {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-        .main-links, .secondary-links {
-            font-size: 1.3rem;
-        }
-        .main-links p, .secondary-links p {
-            padding-top: 10px;
-        }
-        .main-links-links > li{
-            gap: 50px;
-        }
-
-
-        .grid-header {
-            grid-area: 1/2/2/5;
-            display: grid;
-            grid-template-rows: repeat(2, 1fr);
-            text-transform: capitalize;
-            padding: 20px 40px;
-            color: var(--blackColour);
-        }
-        .grid-header-first-row {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
-        }
-        .profile-container-icon {
-            height: 60px;
-            border-radius: 10000px;
-        }
-        .profile-welcome-icon {
-            height: 70px;
-            border-radius: 10000px;
-        }
-        .search-container, .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        .search-container a {
-            color: var(--blackColour);
-        }
-        .search-field {
-            width: 30vw;
-            border: none;
-            font-size: 1.1rem;
-            background-color: var(--greyColour);
-            padding: 5px 10px;
-            border-radius: 10000px;
-            color: var(--darkGreyColour);
-        }
-        .grid-header-second-row {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
-        }
-        .welcome-container, .buttons-container {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        .new-button, .upload-button, .share-button {
-            border: none;
-            font-size: 1.2rem;
-            width: 8vw;
-            padding: 10px 15px;
-            border-radius: 10000px;
-            text-transform: capitalize;
-        }
-        .new-button {
-            background-color: var(--lightBlueColour);
-            color: var(--blueColour);
-            font-weight: 500;
-            border: 2px solid var(--blueColour);
-            transition: 0.2s all ease-in-out;
-        }
-        .new-button:hover {
-            background-color: var(--blueColour);
-            color: var(--lightBlueColour);
-            border: 2px solid var(--blueColour);
-            transition: 0.2s all ease-in-out;
-            cursor: pointer;
-        }
-        .upload-button {
-            background-color: var(--lightYellowColour);
-            color: var(--yellowColour);
-            font-weight: 500;
-            border: 2px solid var(--yellowColour);
-            transition: 0.2s all ease-in-out;
-        }
-        .upload-button:hover {
-            background-color: var(--yellowColour);
-            color: var(--lightYellowColour);
-            border: 2px solid var(--yellowColour);
-            transition: 0.2s all ease-in-out;
-            cursor: pointer;
-        }
-        .share-button {
-            background-color: var(--lightRedColour);
-            color: var(--redColour);
-            font-weight: 500;
-            border: 2px solid var(--redColour);
-            transition: 0.2s all ease-in-out;
-        }
-        .share-button:hover {
-            background-color: var(--redColour);
-            color: var(--lightRedColour);
-            border: 2px solid var(--redColour);
-            transition: 0.2s all ease-in-out;
-            cursor: pointer;
-        }
-
-
-        .grid-content {
-            grid-area: 2/2/5/4;
-            display: grid;
-            grid-template: repeat(2, 1fr) / repeat(2, 1fr);
-            padding: 20px;
-            gap: 20px;
-        }
-        .grid-content-project {
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: 0.2s all ease-in-out;
-            cursor: pointer;
-            box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.16);
-        }
-        .grid-content-project:hover {
-            transform: scale(1.05);
-            transition: 0.2s all ease-in-out;
-        }
-        .grid-content-project-text {
-            color: var(--darkGreyColour);
-        }
-        .grid-project-header {
-            font-size: 1.3rem;
-            font-weight: 500;
-            text-transform: capitalize;
-            color: var(--blackColour);
-            margin-bottom: 10px;
-        }
-        .project-1 {
-            border: 2px solid var(--blueColour);
-            background-color: var(--lightBlueColour);
-        }
-        .project-2 {
-            border: 2px solid var(--yellowColour);
-            background-color: var(--lightYellowColour);
-        }
-        .project-3 {
-            border: 2px solid var(--redColour);
-            background-color: var(--lightRedColour);
-        }
-        .project-4 {
-            border: 2px solid var(--greenColour);
-            background-color: var(--lightGreenColour);
-        }
-
-
-
-        .grid-sidebar {
-            grid-area: 2/4/5/5;
-        }
-        .grid-content, .grid-sidebar {
-            background-color: var(--greyColour);
-        }
-
-    </style>
 </head>
 <body>
     <div class="grid-container">
@@ -279,30 +59,69 @@
                 <div class="grid-content-project-text">
                     <p class="grid-project-header">super cool project</p>
                     <div class="color-line"></div>
-                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis leo ac velit porta gravida sit amet id dolor. In.</p>
                 </div>
             </div>
             <div class="grid-content-project project-2">
                 <div class="grid-content-project-text">
                     <p class="grid-project-header">pretty cool project</p>
-                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tellus erat, feugiat in dignissim scelerisque, venenatis fringilla nibh. Mauris vitae.</p>
                 </div>
             </div>
             <div class="grid-content-project project-3">
                 <div class="grid-content-project-text">
                     <p class="grid-project-header">damn cool project</p>
-                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis efficitur mattis. Vestibulum porta, elit quis consequat ultrices, eros lorem.</p>
                 </div>
             </div>
             <div class="grid-content-project project-4">
                 <div class="grid-content-project-text">
                     <p class="grid-project-header">freaking cool project</p>
-                    <p>This is just some random text for the basic purpose of displaying some random text. Not that random though</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eros erat, semper et neque eget, malesuada rutrum sapien. Donec nec.</p>
                 </div>
             </div>
         </div>
         <div class="grid-sidebar grid-items">
-
+            <div class="announcements-section">
+                <div class="announcement">
+                    <p class="announcement-text-header">Announcement: site buttons maintenance</p>
+                    <p class="announcement-text-desc">The bug with the buttons has been rectified.</p>
+                </div>
+                <div class="announcement">
+                    <p class="announcement-text-header">Announcement: communities page redesigned</p>
+                    <p class="announcement-text-desc">After months of redesigning, the communities page is finally all up and ready.</p>
+                </div>
+            </div>
+            <div class="trending-section">
+                <div class="trending">
+                    <img class="trending-profiles" src="images/profile-icon.jpg" alt="">
+                    <div class="trending-text">
+                        <p class="trending-text-header">@morgan</p>
+                        <p class="trending-text-desc">super cool project</p>
+                    </div>
+                </div>
+                <div class="trending">
+                    <img class="trending-profiles" src="images/profile-icon-1.jpg" alt="">
+                    <div class="trending-text">
+                        <p class="trending-text-header">@tegan</p>
+                        <p class="trending-text-desc">world peace builder</p>
+                    </div>
+                </div>
+                <div class="trending">
+                    <img class="trending-profiles" src="images/profile-icon-2.jpg" alt="">
+                    <div class="trending-text">
+                        <p class="trending-text-header">@kendall</p>
+                        <p class="trending-text-desc">life changing app</p>
+                    </div>
+                </div>
+                <div class="trending">
+                    <img class="trending-profiles" src="images/profile-icon-3.jpg" alt="">
+                    <div class="trending-text">
+                        <p class="trending-text-header">@alex</p>
+                        <p class="trending-text-desc">no traffic maker</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
